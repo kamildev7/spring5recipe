@@ -1,5 +1,6 @@
 package spring5recipe.services;
 
+import spring5recipe.commands.RecipeCommand;
 import spring5recipe.domain.Recipe;
 
 import java.util.Set;
@@ -9,5 +10,8 @@ import java.util.Set;
  */
 public interface RecipeService {
     Set<Recipe> getRecipes();
+
     Recipe findById(Long id);
+
+    RecipeCommand saveRecipeCommand(RecipeCommand recipeCommand);
 }
