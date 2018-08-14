@@ -1,6 +1,5 @@
 package spring5recipe.converters;
 
-import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -25,7 +24,6 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand> {
         this.notesConverter = notesConverter;
     }
 
-    @Synchronized
     @Nullable
     @Override
     public RecipeCommand convert(Recipe source) {

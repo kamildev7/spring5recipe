@@ -1,6 +1,5 @@
 package spring5recipe.converters;
 
-import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -13,7 +12,6 @@ import spring5recipe.domain.Category;
 @Component
 public class CategoryCommandToCategory implements Converter<CategoryCommand, Category> {
 
-    @Synchronized
     @Nullable
     @Override
     public Category convert(CategoryCommand source) {

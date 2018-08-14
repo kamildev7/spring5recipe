@@ -1,6 +1,5 @@
 package spring5recipe.converters;
 
-import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -13,7 +12,6 @@ import spring5recipe.domain.UnitOfMeasure;
 @Component
 public class UnitOfMeasureToUnitOfMeasureCommand implements Converter<UnitOfMeasure, UnitOfMeasureCommand> {
 
-    @Synchronized
     @Nullable
     @Override
     public UnitOfMeasureCommand convert(UnitOfMeasure source) {
