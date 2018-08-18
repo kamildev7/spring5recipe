@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 public class CategoryToCategoryCommandTest {
 
     public static final String DESCRIPTION = "description";
-    public static final Long ID_VALUE = new Long(1L);
+    public static final String ID_VALUE = new String("1");
 
     CategoryToCategoryCommand converter;
 

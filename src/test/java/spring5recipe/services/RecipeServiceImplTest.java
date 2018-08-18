@@ -43,16 +43,16 @@ public class RecipeServiceImplTest {
     @Test
     public void getRecipeByIdTest() {
         Recipe recipe = new Recipe();
-        recipe.setId(1L);
+        recipe.setId("1");
         Optional<Recipe> recipeOptional = Optional.of(recipe);
 
-        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+        when(recipeRepository.findById(anyString())).thenReturn(recipeOptional);
 
-        Recipe recipeReturned = recipeService.findById(1L);
+        Recipe recipeReturned = recipeService.findById("1");
 
        assertNotNull("Null recipe returned", recipeReturned);
 
-        verify(recipeRepository, times(1)).findById(1L);
+        verify(recipeRepository, times(1)).findById("1");
         verify(recipeRepository, never()).findAll();
     }
 
@@ -69,18 +69,18 @@ public class RecipeServiceImplTest {
         assertEquals(1, recipes.size());
 
         verify(recipeRepository, times(1)).findAll();
-        verify(recipeRepository, never()).findById(anyLong());
+        verify(recipeRepository, never()).findById(anyString());
     }
 
     @Test
     public void deleteById() {
         //given
-        Long idToDelete = Long.valueOf(2L);
+        String idToDelete = "2";
 
         //when
         recipeService.deleteById(idToDelete);
 
         //then
-        verify(recipeRepository, times(1)).deleteById(anyLong());
+        verify(recipeRepository, times(1)).deleteById(anyString());
     }
 }

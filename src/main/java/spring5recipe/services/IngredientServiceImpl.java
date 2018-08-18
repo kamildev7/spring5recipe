@@ -10,7 +10,6 @@ import spring5recipe.domain.Recipe;
 import spring5recipe.repositories.RecipeRepository;
 import spring5recipe.repositories.UnitOfMeasureRepository;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 /**
@@ -36,7 +35,7 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public IngredientCommand findByRecipeIdAndIngredientId(Long recipeId, Long ingredientId) {
+    public IngredientCommand findByRecipeIdAndIngredientId(String recipeId, String ingredientId) {
 
         Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);
 
@@ -59,7 +58,6 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    @Transactional
     public IngredientCommand saveIngredientCommand(IngredientCommand command) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(command.getRecipeId());
 

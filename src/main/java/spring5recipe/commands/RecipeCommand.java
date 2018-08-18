@@ -15,7 +15,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 public class RecipeCommand {
-    private Long id;
+    private String id;
     private String description;
     private Integer prepTime;
     private Integer cookTime;

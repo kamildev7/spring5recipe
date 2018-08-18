@@ -38,11 +38,11 @@ public class UnitOfMeasureServiceImplTest {
         //given
         Set<UnitOfMeasure> unitOfMeasures = new HashSet<>();
         UnitOfMeasure unitOfMeasure = new UnitOfMeasure();
-        unitOfMeasure.setId(1L);
+        unitOfMeasure.setId("1");
         unitOfMeasures.add(unitOfMeasure);
 
         UnitOfMeasure unitOfMeasure2 = new UnitOfMeasure();
-        unitOfMeasure2.setId(2L);
+        unitOfMeasure2.setId("2");
         unitOfMeasures.add(unitOfMeasure2);
 
         //when

@@ -1,25 +1,17 @@
 package spring5recipe.domain;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author kamildev7 on 2018-08-08.
  */
-@Data
-@EqualsAndHashCode(exclude = {"recipe"})
-@Entity
+@Getter
+@Setter
 public class Notes {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @OneToOne
+    private String id;
     private Recipe recipe;
-
-    @Lob
     private String recipeNotes;
 
 }
