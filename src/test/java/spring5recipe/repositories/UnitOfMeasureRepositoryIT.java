@@ -4,7 +4,6 @@ package spring5recipe.repositories;
  * @author kamildev7 on 2018-08-13.
  */
 //@RunWith(SpringRunner.class)
-//@DataJpaTest
 //public class UnitOfMeasureRepositoryIT {
 //
 //    @Autowired
