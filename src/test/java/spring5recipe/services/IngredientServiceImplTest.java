@@ -72,7 +72,6 @@ public class IngredientServiceImplTest {
         IngredientCommand ingredientCommand = ingredientService.findByRecipeIdAndIngredientId("1", "3");
 
         //then
-        assertEquals("1", ingredientCommand.getRecipeId());
         assertEquals("3", ingredientCommand.getId());
         verify(recipeRepository, times(1)).findById(anyString());
     }
