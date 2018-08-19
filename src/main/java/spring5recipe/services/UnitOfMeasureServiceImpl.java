@@ -1,13 +1,10 @@
 package spring5recipe.services;
 
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import spring5recipe.commands.UnitOfMeasureCommand;
 import spring5recipe.converters.UnitOfMeasureToUnitOfMeasureCommand;
-import spring5recipe.repositories.UnitOfMeasureRepository;
-
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+import spring5recipe.repositories.reactive.UnitOfMeasureReactiveRepository;
 
 /**
  * @author kamildev7 on 2018-08-15.
@@ -15,20 +12,19 @@ import java.util.stream.StreamSupport;
 @Service
 public class UnitOfMeasureServiceImpl implements UnitOfMeasureService {
 
-    private final UnitOfMeasureRepository unitOfMeasureRepository;
+    private final UnitOfMeasureReactiveRepository unitOfMeasureReactiveRepository;
     private final UnitOfMeasureToUnitOfMeasureCommand unitOfMeasureCommand;
 
-    public UnitOfMeasureServiceImpl(UnitOfMeasureRepository unitOfMeasureRepository,
-                                    UnitOfMeasureToUnitOfMeasureCommand unitOfMeasureCommand) {
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
+    public UnitOfMeasureServiceImpl(UnitOfMeasureReactiveRepository unitOfMeasureReactiveRepository, UnitOfMeasureToUnitOfMeasureCommand unitOfMeasureCommand) {
+        this.unitOfMeasureReactiveRepository = unitOfMeasureReactiveRepository;
         this.unitOfMeasureCommand = unitOfMeasureCommand;
     }
 
+
     @Override
-    public Set<UnitOfMeasureCommand> listAllUoms() {
-        return StreamSupport.stream(unitOfMeasureRepository.findAll()
-                .spliterator(), false)
-                .map(unitOfMeasureCommand::convert)
-                .collect(Collectors.toSet());
+    public Flux<UnitOfMeasureCommand> listAllUoms() {
+        return unitOfMeasureReactiveRepository
+                .findAll()
+                .map(unitOfMeasureCommand::convert);
     }
 }

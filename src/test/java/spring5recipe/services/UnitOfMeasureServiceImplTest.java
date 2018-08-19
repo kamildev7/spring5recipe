@@ -4,12 +4,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import reactor.core.publisher.Flux;
 import spring5recipe.commands.UnitOfMeasureCommand;
 import spring5recipe.converters.UnitOfMeasureToUnitOfMeasureCommand;
 import spring5recipe.domain.UnitOfMeasure;
-import spring5recipe.repositories.UnitOfMeasureRepository;
+import spring5recipe.repositories.reactive.UnitOfMeasureReactiveRepository;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -21,7 +23,7 @@ import static org.mockito.Mockito.*;
 public class UnitOfMeasureServiceImplTest {
 
     @Mock
-    UnitOfMeasureRepository unitOfMeasureRepository;
+    UnitOfMeasureReactiveRepository unitOfMeasureReactiveRepository;
 
     UnitOfMeasureToUnitOfMeasureCommand command = new UnitOfMeasureToUnitOfMeasureCommand();
 
@@ -30,7 +32,7 @@ public class UnitOfMeasureServiceImplTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        unitOfMeasureService = new UnitOfMeasureServiceImpl(unitOfMeasureRepository, command);
+        unitOfMeasureService = new UnitOfMeasureServiceImpl(unitOfMeasureReactiveRepository, command);
     }
 
     @Test
@@ -46,13 +48,13 @@ public class UnitOfMeasureServiceImplTest {
         unitOfMeasures.add(unitOfMeasure2);
 
         //when
-        when(unitOfMeasureRepository.findAll()).thenReturn(unitOfMeasures);
+        when(unitOfMeasureReactiveRepository.findAll()).thenReturn(Flux.just(unitOfMeasure, unitOfMeasure2));
 
-        Set<UnitOfMeasureCommand> commands = unitOfMeasureService.listAllUoms();
+        List<UnitOfMeasureCommand> commands = unitOfMeasureService.listAllUoms().collectList().block();
 
         //then
         assertEquals(2, commands.size());
-        verify(unitOfMeasureRepository, times(1)).findAll();
+        verify(unitOfMeasureReactiveRepository, times(1)).findAll();
 
 
     }
