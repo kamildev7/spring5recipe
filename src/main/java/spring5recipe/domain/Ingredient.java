@@ -23,7 +23,6 @@ public class Ingredient {
 
     @DBRef
     private UnitOfMeasure unitOfMeasure;
-//    private Recipe recipe;
 
     public Ingredient() {
     }
